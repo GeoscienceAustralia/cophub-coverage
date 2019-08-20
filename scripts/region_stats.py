@@ -35,24 +35,24 @@ COMBINATIONS = [
     ("RAW", "1"),
     ("L1C", "2"),
     ("L2A", "2"),
-#     ("OL_1_EFR___", "3"),
-#     ("OL_1_ERR___", "3"),
-#     ("OL_2_LFR___", "3"),
-#     ("OL_2_LRR___", "3"),
-#     ("OL_2_WFR___", "3"),
-#     ("OL_2_WRR___", "3"),
-#     ("SL_1_RBT___", "3"),
-#     ("SL_2_LST___", "3"),
-#     ("SL_2_WST___", "3"),
-#     ("SR_1_SRA_A_", "3"),
-#     ("SR_1_SRA_BS", "3"),
-#     ("SL_2_SRA___", "3"),
-#     ("SR_2_LAN___", "3"),
-#     ("SR_2_WAT___", "3"),
-#     ("SY_2_SYN___", "3"),
-#     ("SY_2_V10___", "3"),
-#     ("SY_2_VG1___", "3"),
-#     ("SY_2_SGP___", "3"),
+    ("OL_1_EFR___", "3"),
+    ("OL_1_ERR___", "3"),
+    ("OL_2_LFR___", "3"),
+    ("OL_2_LRR___", "3"),
+    ("OL_2_WFR___", "3"),
+    ("OL_2_WRR___", "3"),
+    ("SL_1_RBT___", "3"),
+    ("SL_2_LST___", "3"),
+    ("SL_2_WST___", "3"),
+    ("SR_1_SRA___", "3"),
+    ("SR_1_SRA_A_", "3"),
+    ("SR_1_SRA_BS", "3"),
+    ("SR_2_LAN___", "3"),
+    ("SR_2_WAT___", "3"),
+    ("SY_2_SYN___", "3"),
+    ("SY_2_V10___", "3"),
+    ("SY_2_VG1___", "3"),
+    ("SY_2_VGP___", "3"),
 ]
 
 
@@ -125,7 +125,7 @@ def main(outdir):
                 result['bytes'] = size
 
     df = pandas.DataFrame(result)
-    df.to_csv(outdir.joinpath('region-stats-S1-S2.csv'))
+    df.to_csv(outdir.joinpath('region-stats-S1.csv'))
 
 
 if __name__ == '__main__':
