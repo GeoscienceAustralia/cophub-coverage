@@ -129,8 +129,18 @@ def main(outdir):
                 result['end_date'].append(end_date)
                 result['bytes'].append(size)
 
+    # create the dataframe and save the results
     df = pandas.DataFrame(result)
-    df.to_csv(outdir.joinpath('region-stats-S1.csv'))
+    df.to_csv(outdir.joinpath('region-stats.csv'))
+
+    # summarise per region, product and FY and save
+    idx = [
+        'region',
+        'product',
+        'start_date'
+    ]
+    pivot = df.pivot_table(values='bytes', index=idx, aggfunc='sum')
+    pivot.to_csv('region-summary.csv')
 
 
 if __name__ == '__main__':
