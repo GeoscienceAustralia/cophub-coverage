@@ -18,12 +18,12 @@ PERIODS = pandas.date_range('2015', '2020', freq='AS-JUL')
 REGIONS = [
     "Oceania",
     "Asia",
-    "Antartica",
-    "OpenOcean",
+    "Antarctica",
+    "Open Ocean",
     "Africa",
     "Europe",
-    "NorthAmerica",
-    "SouthAmerica",
+    "North America",
+    "South America",
     "Unclassified"
 ]
 
@@ -68,12 +68,12 @@ def main(outdir):
     """
     outdir = Path(outdir)
     result = {
-       'region': [],
-       'sentinel_mission': [],
-       'product': [],
-       'start_date': [],
-       'end_date': [],
-       'bytes': []
+        'region': [],
+        'sentinel_mission': [],
+        'product': [],
+        'start_date': [],
+        'end_date': [],
+        'bytes': []
     }
 
     for i in range(1, len(PERIODS)):
@@ -82,10 +82,15 @@ def main(outdir):
 
         for region in REGIONS:
             for combo in COMBINATIONS:
+                fmt = "sentinel-{}-{}-{}-{}-{}.json"
                 out_fname = outdir.joinpath(
-                    "sentinel-{}-{}-{}-{}-{}.json".format(combo[1], combo[0],
-                                                          region, start_date,
-                                                          end_date)
+                    fmt.format(
+                        combo[1],
+                        combo[0],
+                        region.replace(' ', ''),
+                        start_date,
+                        end_date
+                    )
                 )
                 cmd = [
                     "auscophub_searchSara.py",
@@ -122,7 +127,7 @@ def main(outdir):
                 result['product'].append(combo[0])
                 result['start_date'].append(start_date)
                 result['end_date'].append(end_date)
-                result['bytes'] = size
+                result['bytes'].append(size)
 
     df = pandas.DataFrame(result)
     df.to_csv(outdir.joinpath('region-stats-S1.csv'))
